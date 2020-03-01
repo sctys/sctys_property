@@ -2,7 +2,6 @@ DATA_PATH = '/media/sctys/Seagate Expansion Drive/Data/sctys_property'
 NETDATA_PATH = '/media/sctys/Seagate Expansion Drive/Projects/sctys_netdata'
 NOTIFIER_PATH = '/media/sctys/Seagate Expansion Drive/Projects/sctys_notify'
 IO_PATH = '/media/sctys/Seagate Expansion Drive/Projects/sctys_io'
-NOTIFIER = 'telegram'
 MODE = 'thread'
 
 
