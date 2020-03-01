@@ -57,7 +57,6 @@ class Hse28Scrapper(Hse28Setting):
 
     def get_property_url_from_html(self, response, max_id):
         if response['ok']:
-            self.io.save_file(response['message'], DATA_PATH, 'temp.html', 'html')
             soup = BeautifulSoup(response['message'], parser='html.parser')
             result_list = soup.select(self.RESULT_TAG)[0]
             property_url_list = [property_tag.get('href') for property_tag in result_list.select('a')]
@@ -113,8 +112,9 @@ class Hse28Scrapper(Hse28Setting):
         return property_data
 
     def save_max_id(self, property_data):
-        max_id = {'max_id': str(property_data.index.astype(int).max())}
-        self.io.save_file(max_id, DATA_PATH, self.TEMP_ID_FILE, 'json')
+        if len(property_data) > 0:
+            max_id = {'max_id': str(property_data.index.astype(int).max())}
+            self.io.save_file(max_id, DATA_PATH, self.TEMP_ID_FILE, 'json')
 
     @ staticmethod
     def convert_property_dict_to_str(property_dict):
