@@ -117,8 +117,10 @@ class Hse28Scrapper(Hse28Setting):
         return property_data
 
     def save_max_id(self, property_data):
-        max_id = {'max_id': str(property_data.index.astype(int).max())}
-        self.io.save_file(max_id, DATA_PATH, self.TEMP_ID_FILE, 'json')
+        max_id = str(property_data.index.astype(int).max())
+        if max_id != 'nan':
+            max_id = {'max_id': max_id}
+            self.io.save_file(max_id, DATA_PATH, self.TEMP_ID_FILE, 'json')
 
     @ staticmethod
     def convert_property_dict_to_str(property_dict):
@@ -143,6 +145,7 @@ class Hse28Scrapper(Hse28Setting):
         property_data = self.aggregate_property_table(response_list)
         if len(property_data) > 0:
             property_data = self.clean_filter_property_table(property_data)
+        if len(property_data) > 0:
             self.save_max_id(property_data)
             self.send_property_details(property_data)
 
