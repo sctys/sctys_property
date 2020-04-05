@@ -18,3 +18,13 @@ class Hse28Setting(object):
     SMALLEST_SIZE = 300
 
 
+class Hse730Setting(object):
+    RESULT_URL = 'https://www.house730.com/buy/hk{}t1p3u14g{}/'
+    DISTRICT = ['01']
+    CHECK_NO_PAGE = 2
+    CHECK_ID_FILE = 'check_id.json'
+    RESULT_TAG = 'div.house-lists.clearfix'
+    PROPERTY_TAB = 'table.baseinfor'
+    OLDEST_PROPERTY = 45
+    SMALLEST_SIZE = 300
+
