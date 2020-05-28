@@ -30,7 +30,7 @@ class Hse730(Hse730Setting):
         return sent_id
 
     def get_search_url_list(self):
-        url_list = [self.RESULT_URL.format(district, page_no + 1) for district in self.DISTRICT
+        url_list = [self.RESULT_URL.format(''.join(self.DISTRICT), page_no + 1, self.LOWEST_PRICE, self.HIGHEST_PRICE)
                     for page_no in range(self.CHECK_NO_PAGE)]
         return url_list
 

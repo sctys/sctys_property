@@ -12,7 +12,7 @@ sys.path.append(IO_PATH)
 from web_scrapper import WebScrapper
 from telegram_notifier import TelegramNotifier
 from file_io import FileIO
-from netdata_utilities import check_html_element_exist, async_wait_for_element, async_click_option
+from netdata_utilities import check_html_element_exist, async_wait_for_element, async_click_option, async_fill_box, async_click_button
 
 
 class Hse28Scrapper(Hse28Setting):
@@ -34,7 +34,9 @@ class Hse28Scrapper(Hse28Setting):
         return max_id
 
     async def sort_filter_page(self, session):
-        session = await async_click_option(session, self.FILTER_TAG, self.LOAD_TAG)
+        session = await async_fill_box(session, self.LOW_PRICE_TAG, self.LOWEST_PRICE)
+        session = await async_fill_box(session, self.HIGH_PRICE_TAG, self.HIGHEST_PRICE)
+        session = await async_click_button(session, self.PRICE_BUTTON_TAG, self.LOAD_TAG)
         session = await async_click_option(session, self.SORT_TAG, self.LOAD_TAG)
         return session
 
